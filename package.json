@@ -1,0 +1,20 @@
+{
+  "name": "soeluma",
+  "version": "1.0.0",
+  "description": "A node js application for parsing and returning movie ratings data",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iamdavidonuh/soeluma.git"
+  },
+  "author": "David Onuh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Iamdavidonuh/soeluma/issues"
+  },
+  "homepage": "https://github.com/Iamdavidonuh/soeluma#readme"
+}

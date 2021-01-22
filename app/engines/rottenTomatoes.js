@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const { normalizeQueryParam } = require('../libs/util');
+const { normalizeQueryParam, dateConverter } = require('../libs/util');
 
 function buildMovieDetailsUrl(query){
     const base_url = `https://www.rottentomatoes.com/api/private/v1.0/movies/${query}`
@@ -58,17 +58,18 @@ const parseMovieDataRT = movieJson => {
      * parses the json data gotten from RT and returns necessary information
      * 
      */
-    const dataDict = [];
-    dataDict.push({
-        'title': movieJson.title,
-        'studio': movieJson.studio,
-        'avgRatings': movieJson.ratingSummary.allCritics.averageRating,
-        'consensus': movieJson.ratingSummary.consensus,
-        'movie_id': movieJson.id,
-        'synopsis': movieJson.synopsis
-    });
+    const dataObj = {};
+    let releaseDate = dateConverter(movieJson.ratings.theaterReleaseDate)
+    
+    dataObj['title'] = movieJson.title
+    dataObj['studio'] = movieJson.studio
+    dataObj['avgRating'] = movieJson.ratingSummary.allCritics.averageRating
+    dataObj['consensus'] = movieJson.ratingSummary.consensus
+    dataObj['movie_id'] = movieJson.id
+    dataObj['synopsis'] = movieJson.synopsis
+    dataObj['theaterReleaseDate'] = releaseDate
 
-    return dataDict;
+    return dataObj;
 }
 
 module.exports.getMovieData = getMovieData;

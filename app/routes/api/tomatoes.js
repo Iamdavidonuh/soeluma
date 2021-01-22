@@ -28,7 +28,7 @@ router.post(
                 
             let movie = new Movie({
                 ...response,
-                meta_data: data.data
+                meta_data: data
             })
             movie.save();
 

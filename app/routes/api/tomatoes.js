@@ -3,6 +3,7 @@ const { check, validationResult } = require('express-validator');
 const { model } = require('mongoose');
 const router = express.Router();
 
+const { getMovieData, parseMovieDataRT } = require('../../engines/rottenTomatoes');
 
 // @route POST api/tomatoes
 // @desc Get movie detail
@@ -21,7 +22,11 @@ router.post(
 
         const { name } = req.body;
         try{
-            res.json({ name })
+            getMovieData(name).then(data => {
+                console.log(data.data);
+                const response = parseMovieDataRT(data.data);
+                res.json(response);
+            }).catch(error => console.log(error));
         }catch(error){
             console.log(error.message);
             req.status(500).send("Server Error")

@@ -17,5 +17,5 @@ function dateConverter(timestamp){
 
 }
 
-exports.normalizeQueryParam = normalizeQueryParam;
-exports.dateConverter = dateConverter;
+module.exports.normalizeQueryParam = normalizeQueryParam;
+module.exports.dateConverter = dateConverter;

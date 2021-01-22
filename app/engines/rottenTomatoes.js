@@ -71,6 +71,6 @@ const parseMovieDataRT = movieJson => {
     return dataDict;
 }
 
-exports.getMovieData = getMovieData;
-exports.alternateMovieParse = alternateMovieParse;
-exports.parseMovieDataRT = parseMovieDataRT;
+module.exports.getMovieData = getMovieData;
+module.exports.alternateMovieParse = alternateMovieParse;
+module.exports.parseMovieDataRT = parseMovieDataRT;

@@ -9,7 +9,8 @@ function buildMovieDetailsUrl(query){
 
 async function getMovieData(query){
     const cleanedUrl = buildMovieDetailsUrl(normalizeQueryParam(query));
-    return axios(cleanedUrl)
+    let response = await axios(cleanedUrl)
+    return response.data
 }
 
 function alternateMovieParse(query){

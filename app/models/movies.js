@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const MovieSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     studio: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     consensus: {
         type: String,
@@ -15,7 +17,8 @@ const MovieSchema = new mongoose.Schema({
     },
     movie_id: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     synopsis: {
         type: String,

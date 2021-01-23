@@ -21,16 +21,20 @@ router.post(
         }
 
         const { movie_title } = req.body;
-        try{    
-            // check if movie name exists return else save then return
-            let data = await getMovieData(movie_title)
-            const response = parseMovieDataRT(data);
+        try{ 
+            let movie = await Movie.findOne({ title : movie_title.toLowerCase() })
+            
+            if (!movie){
                 
-            let movie = new Movie({
-                ...response,
-                meta_data: data
-            })
-            movie.save();
+                let data = await getMovieData(movie_title)
+                const response = parseMovieDataRT(data);
+                    
+                movie = new Movie({
+                    ...response,
+                    meta_data: data
+                })
+                return movie.save();
+            }
 
             res.json(movie);
             

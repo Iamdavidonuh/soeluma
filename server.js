@@ -1,6 +1,5 @@
-const http = require('http');
 const express = require('express');
-const {connectDBLocal} = require('./app/libs/db')
+const { connectDBLocal } = require('./app/libs/db')
 
 const app = express();
 

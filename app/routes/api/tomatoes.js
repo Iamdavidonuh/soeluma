@@ -33,7 +33,8 @@ router.post(
                     ...response,
                     meta_data: data
                 })
-                return movie.save();
+                await  movie.save();
+                return res.json(movie);
             }
 
             res.json(movie);

@@ -1,12 +1,12 @@
 const express = require('express');
-const { connectDBLocal } = require('./app/libs/db')
+const { connectDBDocker } = require('./app/libs/db')
 
 const app = express();
 
 //connect database
-connectDBLocal()
+connectDBDocker()
 
-const hostname = 'localhost';
+const hostname = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 // init middleware
@@ -22,3 +22,4 @@ app.listen(port, hostname, () =>{
     console.log(`Server running at ${hostname}:${port}`)
 });
 
+module.exports = app;

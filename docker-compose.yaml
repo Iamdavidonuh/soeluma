@@ -8,6 +8,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
   
   mongo-express:
     image: mongo-express
@@ -18,3 +20,15 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  soeluma:
+    image: soeluma:1.0
+    restart: always
+    ports:
+      - 3000:3000
+
+
+volumes:
+  mongo-data:
+    driver: local
+

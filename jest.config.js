@@ -2,9 +2,10 @@
 
 module.exports = {
     setupFilesAfterEnv: ['./jest.config.js'],
-    testEnvironment: 'node',
+    //testEnvironment: 'node',
    // verbose: true,
     testTimeout: 8000,
+    "preset": "@shelf/jest-mongodb",
 
 };
 

@@ -1,9 +1,8 @@
 const { getMovieData } = require('../engines/rottenTomatoes.js');
 const app = require('../app.js');
 const requests = require('supertest');
-const {connectDBTest} = require('../libs/db.js');
+const { connectDBLocal } = require('../libs/db.js');
 const mongoose = require('mongoose');
-
 
 
 
@@ -21,8 +20,24 @@ describe('tests relating to rottentommatoes engine', () => {
 
 describe('test /get-movie endpoint', () => {
 
-    beforeAll(done => done());
+    let mongoDBLocalUri =" mongodb://localhost:27017"
+    let connection;
+    let db;
+    beforeAll(async () => {
+        connnection = await mongoose.connect(global.__MONGO_URI__, { 
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            //auth: {authSource:"admin"},
+            //user: "admin",
+            //pass: "password"
+        });
+    });
 
+    afterAll(async (done) => {
+        console.log("afterall closing");
+        await mongoose.disconnect()
+        done();
+    });
 
     test('test get request throws error', async (done) => {
         const res = await requests(app)
@@ -36,6 +51,16 @@ describe('test /get-movie endpoint', () => {
             .post('/api/get-movie')
             .send({ movie_title: '' })
         expect(res.status).toBe(400)
+        done();
+    
+    });
+
+    test('test search item returns object', async (done) => {
+        const res = await requests(app)
+            .post('/api/get-movie')
+            .send({ movie_title: 'captain america' })
+        expect(res.body).toBeInstanceOf(Object);
+        expect(res.status).toBe(200);
         done();
     
     });

@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
+const { mongoDBLocalUri, mongoDBDockerUri } = require('../config/config.js');
 
-let mongodbURILocal = "mongodb://localhost:27017/Movie";
-let mongodbURIDocker = "mongodb://admin:password@mongodb/Movie";
 
 const connectDBLocal = async() => {
     try{
-        await mongoose.connect(mongodbURILocal, {
+        await mongoose.connect(mongoDBLocalUri, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
             useCreateIndex: true,
@@ -25,7 +24,7 @@ const connectDBLocal = async() => {
 
 const connectDBDocker = async() => {
     try{
-        await mongoose.connect(mongodbURIDocker, {
+        await mongoose.connect(mongoDBDockerUri, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
             useCreateIndex: true,

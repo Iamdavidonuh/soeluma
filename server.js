@@ -1,4 +1,5 @@
 const express = require('express');
+const { port } = require('./app/config/config');
 const { connectDBDocker, connectDBLocal } = require('./app/libs/db')
 const app = require('./app/app.js');
 
@@ -6,8 +7,6 @@ const app = require('./app/app.js');
 //connectDBLocal()
 
 const hostname = '0.0.0.0';
-const port = process.env.PORT || 3000;
-
 
 
 app.listen(port, hostname, () =>{

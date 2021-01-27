@@ -5,23 +5,33 @@ Estonian for parse, is a node js application for parsing and returning movie rat
 
 ## Requirements
 
-For development, you will need Node <b> version 12</b> upwards and a node global package, Yarn or Npm, installed in your environment.
+- Node (v12^)
 
-### Install
-
-- Node
+    To install node, checkout [node documentation](https://nodejs.org/en/download/package-manager/), personally i prefer the [nvm section](https://nodejs.org/en/download/package-manager/#nvm)
 
 - Mongodb
+
+    Checkout the mongodb [docs](https://docs.mongodb.com/manual/installation/)
 
 - Redis
 
     `sudo apt update && sudo apt install redis-server`
 
+    If you don't run redis on the default port, specify that in the .env file
+
 ## Installation
 
-    git clone https://github.com/Iamdavidonuh/soeluma
-    cd soeluma
-    yarn install
+- Clone the Repo
+
+    `git clone https://github.com/Iamdavidonuh/soeluma`
+
+- change directory to project root
+
+    `cd soeluma`
+
+- Install Dependencies
+
+    `yarn install`
 
 - create **.env.development** file from **example.env** template file.
 

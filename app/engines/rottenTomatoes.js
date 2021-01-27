@@ -9,14 +9,14 @@ function buildMovieDetailsUrl(query){
 
 async function getMovieData(query){
     const cleanedUrl = buildMovieDetailsUrl(normalizeQueryParam(query));
-    let response = await axios(cleanedUrl)
-    return response.data
+    let response = await axios.get(cleanedUrl);
+    return response.data;
 }
 
 function alternateMovieParse(query){
 
     query = normalizeQueryParam(query)
-    const url = `https://www.rottentomatoes.com/m/${query}`
+    const url = `https://www.rottentomatoes.com/m/${query}`;
     const data = [];
     
     axios(url)
@@ -60,15 +60,15 @@ const parseMovieDataRT = movieJson => {
      * 
      */
     const dataObj = {};
-    let releaseDate = dateConverter(movieJson.ratings.theaterReleaseDate)
+    let releaseDate = dateConverter(movieJson.ratings.theaterReleaseDate);
     
-    dataObj['title'] = movieJson.title
-    dataObj['studio'] = movieJson.studio
-    dataObj['avgRating'] = movieJson.ratingSummary.allCritics.averageRating
-    dataObj['consensus'] = movieJson.ratingSummary.consensus
-    dataObj['movie_id'] = movieJson.id
-    dataObj['synopsis'] = movieJson.synopsis
-    dataObj['theaterReleaseDate'] = releaseDate
+    dataObj['title'] = movieJson.title;
+    dataObj['studio'] = movieJson.studio;
+    dataObj['avgRating'] = movieJson.ratingSummary.allCritics.averageRating;
+    dataObj['consensus'] = movieJson.ratingSummary.consensus;
+    dataObj['movie_id'] = movieJson.id;
+    dataObj['synopsis'] = movieJson.synopsis;
+    dataObj['theaterReleaseDate'] = releaseDate;
 
     return dataObj;
 }

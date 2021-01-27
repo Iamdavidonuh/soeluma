@@ -22,17 +22,16 @@ router.post(
         }
 
         const { movie_title } = req.body;
-        const movie_title_lower = movie_title.toLowerCase()
-        console.log(movie_title_lower)
+        const movie_title_lower = movie_title.toLowerCase();
 
         try{
             // check item in cache
-            const cache_hit = await getCacheDataOrNull(movie_title_lower)
+            const cache_hit = await getCacheDataOrNull(movie_title_lower);
             if (cache_hit != null){
                 res.json(JSON.parse(cache_hit));
             }
             else{
-                let  movie = await Movie.findOne({ title : movie_title_lower })
+                let  movie = await Movie.findOne({ title : movie_title_lower })''
                 if (!movie){
                     let data = await getMovieData(movie_title_lower);
                     const response = parseMovieDataRT(data);
@@ -43,7 +42,7 @@ router.post(
                     })
                     await  movie.save();
                     //update cache
-                    updateCache(movie_title_lower, movie)
+                    updateCache(movie_title_lower, movie);
                     return res.json(movie);
                 }
                 res.json(movie);
@@ -51,7 +50,7 @@ router.post(
             
         }catch(error){
             console.log(error.message);
-            res.status(500).send("Server Error")
+            res.status(500).send("Server Error");
         }
     }
     );

@@ -1,3 +1,17 @@
+const { redisClient, get } = require('../config/config');
+
+function getCacheDataOrNull(searchTerm){
+    return get(searchTerm)
+}
+
+const updateCache = async (searchTerm, data) => {
+    try{
+        redisClient.set(searchTerm, JSON.stringify(data));
+    }catch(err){
+        console.log(err);
+    }
+    
+}
 
 
 function normalizeQueryParam(query){
@@ -17,5 +31,10 @@ function dateConverter(timestamp){
 
 }
 
-module.exports.normalizeQueryParam = normalizeQueryParam;
-module.exports.dateConverter = dateConverter;
+module.exports = {
+    getCacheDataOrNull: getCacheDataOrNull,
+    updateCache: updateCache,
+    normalizeQueryParam : normalizeQueryParam,
+    dateConverter : dateConverter,
+}
+

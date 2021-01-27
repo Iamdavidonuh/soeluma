@@ -4,6 +4,7 @@ const router = express.Router();
 const Movie = require('../../models/movies');
 
 const { getMovieData, parseMovieDataRT } = require('../../engines/rottenTomatoes');
+const { getCacheDataOrNull, updateCache } = require('../../libs/util');
 
 // @route POST api/tomatoes
 // @desc Get movie detail
@@ -21,27 +22,36 @@ router.post(
         }
 
         const { movie_title } = req.body;
-        try{ 
-            let movie = await Movie.findOne({ title : movie_title.toLowerCase() })
-            
-            if (!movie){
-                
-                let data = await getMovieData(movie_title)
-                const response = parseMovieDataRT(data);
-                    
-                movie = new Movie({
-                    ...response,
-                    meta_data: data
-                })
-                await  movie.save();
-                return res.json(movie);
-            }
+        const movie_title_lower = movie_title.toLowerCase()
+        console.log(movie_title_lower)
 
-            res.json(movie);
+        try{
+            // check item in cache
+            const cache_hit = await getCacheDataOrNull(movie_title_lower)
+            if (cache_hit != null){
+                res.json(JSON.parse(cache_hit));
+            }
+            else{
+                let  movie = await Movie.findOne({ title : movie_title_lower })
+                if (!movie){
+                    let data = await getMovieData(movie_title_lower);
+                    const response = parseMovieDataRT(data);
+                    
+                    movie = new Movie({
+                        ...response,
+                        meta_data: data
+                    })
+                    await  movie.save();
+                    //update cache
+                    updateCache(movie_title_lower, movie)
+                    return res.json(movie);
+                }
+                res.json(movie);
+            }
             
         }catch(error){
             console.log(error.message);
-            req.status(500).send("Server Error")
+            res.status(500).send("Server Error")
         }
     }
     );

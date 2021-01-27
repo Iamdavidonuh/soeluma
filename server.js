@@ -1,4 +1,4 @@
-const { port, redisClient, useDocker } = require('./app/config/config');
+const { EXPRESS_PORT, redisClient, useDocker } = require('./app/config/config');
 const { connectDBDocker, connectDBLocal } = require('./app/libs/db')
 const app = require('./app/app.js');
 
@@ -14,7 +14,7 @@ redisClient.on("error", (err) => {
     console.log(err);
 });
 
-app.listen(port, hostname, () =>{
-    console.log(`Server running at ${hostname}:${port}`)
+app.listen(EXPRESS_PORT, hostname, () =>{
+    console.log(`Server running at ${hostname}:${EXPRESS_PORT}`)
 });
 

@@ -31,7 +31,7 @@ router.post(
                 res.json(JSON.parse(cache_hit));
             }
             else{
-                let  movie = await Movie.findOne({ title : movie_title_lower })''
+                let  movie = await Movie.findOne({ title : movie_title_lower })
                 if (!movie){
                     let data = await getMovieData(movie_title_lower);
                     const response = parseMovieDataRT(data);

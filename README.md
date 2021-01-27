@@ -3,15 +3,35 @@
 
 Estonian for parse, is a node js application for parsing and returning movie ratings data
 
+## Requirements
+
+For development, you will need Node <b> version 12</b> upwards and a node global package, Yarn or Npm, installed in your environment.
+
+### Install
+
+- Node
+
+- Mongodb
+
+- Redis
+
+    `sudo apt update && sudo apt install redis-server`
+
 ## Installation
 
     git clone https://github.com/Iamdavidonuh/soeluma
     cd soeluma
     yarn install
 
-- create .env.development file from example.env template
+- create **.env.development** file from **example.env** template file.
 
     `cp example.env .env.development`
+
+## Alternatively
+
+- Install Docker and Docker-Compose
+
+- run `docker-compose -f docker-compose.yaml -d up`
 
 ## Available Scripts
 

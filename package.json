@@ -23,7 +23,8 @@
     "cheerio": "^1.0.0-rc.5",
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
-    "mongoose": "^5.11.13"
+    "mongoose": "^5.11.13",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",

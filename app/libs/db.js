@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { mongoDBLocalUri, mongoDBDockerUri } = require('../config/config.js');
+const { mongoDBLocalUri, mongoDBDockerUri, MONGODB_USER, MONGODB_PASS } = require('../config/config.js');
 
 
 const connectDBLocal = async() => {
@@ -9,8 +9,8 @@ const connectDBLocal = async() => {
             useNewUrlParser: true,
             useCreateIndex: true,
             auth: { authSource: 'admin' },
-            user: "admin",
-            pass: "password",
+            user: MONGODB_USER,
+            pass: MONGODB_PASS,
         })
         console.log('Local MongoDB Connected...');
     }catch(err){
@@ -29,8 +29,8 @@ const connectDBDocker = async() => {
             useNewUrlParser: true,
             useCreateIndex: true,
             auth: { authSource: 'admin' },
-            user: "admin",
-            pass: "password",
+            user: MONGODB_USER,
+            pass: MONGODB_PASS,
         })
         console.log('Docker MongoDB Connected...');
     }catch(err){

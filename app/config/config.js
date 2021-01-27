@@ -12,5 +12,8 @@ module.exports =  {
     mongoDBDockerUri: process.env.MONGODB_URI_DOCKER,
     redisClient: client,
     get: get,
-    useDocker: process.env.USE_DOCKER
+    useDocker: process.env.USE_DOCKER,
+    MONGODB_USER: process.env.MONGODB_USER,
+    MONGODB_PASS: process.env.MONGODB_PASS,
+    MONGO_DBNAME: process.env.MONGO_DBNAME
 };

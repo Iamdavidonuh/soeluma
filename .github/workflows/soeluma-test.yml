@@ -1,4 +1,4 @@
-name: soeluma-test-actions
+name: Soeluma Test
 
 on:
   push:

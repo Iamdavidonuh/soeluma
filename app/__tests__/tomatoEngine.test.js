@@ -3,7 +3,7 @@ const app = require('../app.js');
 const requests = require('supertest');
 const { connectDBLocal } = require('../libs/db.js');
 const mongoose = require('mongoose');
-
+const {redisClient} = require('../config/config.js')
 
 
 
@@ -34,9 +34,9 @@ describe('test /get-movie endpoint', () => {
     });
 
     afterAll(async (done) => {
-        console.log("afterall closing");
-        await mongoose.disconnect()
+        await mongoose.disconnect();
         done();
+        await redisClient.quit();
     });
 
     test('test get request throws error', async (done) => {

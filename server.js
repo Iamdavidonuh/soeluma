@@ -4,6 +4,7 @@ const app = require('./app/app.js');
 
 
 //connect database
+//
 
 (useDocker===true) ? connectDBDocker() : connectDBLocal();
 

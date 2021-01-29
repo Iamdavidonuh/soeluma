@@ -1,7 +1,7 @@
 
 # Sõeluma
 
-[![Actions Status](https://github.com/Iamdavidonuh/soeluma/workflows/Soeluma%Test/badge.svg)](https://github.com/Iamdavidonuh/soeluma/actions)
+[![Actions Status](https://github.com/Iamdavidonuh/soeluma/workflows/Soeluma%20Test/badge.svg)](https://github.com/Iamdavidonuh/soeluma/actions)
 
 Estonian for parse, is a node js application for parsing and returning movie ratings data
 

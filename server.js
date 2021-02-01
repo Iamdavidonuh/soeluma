@@ -1,12 +1,16 @@
-const { EXPRESS_PORT, redisClient, useDocker } = require('./app/config/config');
-const { connectDBDocker, connectDBLocal } = require('./app/libs/db')
+const { EXPRESS_PORT, redisClient, useDocker, useAtlasDB } = require('./app/config/config');
+const { connectDBDocker, connectDBLocal, connectDBAtlas } = require('./app/libs/db')
 const app = require('./app/app.js');
 
 
 //connect database
-//
-
-(useDocker===true) ? connectDBDocker() : connectDBLocal();
+if(useDocker===true){
+    connectDBDocker();
+}else if(useAtlasDB===true){
+    connectDBAtlas();
+}else{
+    connectDBLocal();
+}
 
 const hostname = '0.0.0.0';
 

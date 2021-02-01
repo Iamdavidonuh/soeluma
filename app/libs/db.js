@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { mongoDBLocalUri, mongoDBDockerUri, MONGODB_USER, MONGODB_PASS } = require('../config/config.js');
+const { mongoDBLocalUri, mongoDBDockerUri, mongoDBAtlasUri, MONGODB_USER, MONGODB_PASS } = require('../config/config.js');
 
 
 const connectDBLocal = async() => {
@@ -41,6 +41,25 @@ const connectDBDocker = async() => {
     }
 }
 
+const connectDBAtlas = async() => {
+    try{
+        await mongoose.connect(mongoDBAtlasUri, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true,
+        })
+        console.log('Atlas MongoDB Connected...');
+    }catch(err){
+        console.log(err.message);
 
-module.exports.connectDBDocker = connectDBDocker;
-module.exports.connectDBLocal = connectDBLocal;
+        //exit process with failure
+        process.exit(1)
+    }
+}
+module.exports = {
+    
+    connectDBDocker:connectDBDocker,
+    connectDBLocal:connectDBLocal,
+    connectDBAtlas: connectDBAtlas,
+
+}

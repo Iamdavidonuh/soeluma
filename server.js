@@ -23,7 +23,7 @@ redisClient.on("error", (err) => {
     console.log(err);
 });
 
-app.listen(EXPRESS_PORT, hostname, () =>{
-    console.log(`Server running at ${hostname}:${EXPRESS_PORT}`)
+app.listen(process.env.PORT || EXPRESS_PORT, hostname, () =>{
+    console.log(`Server running at ${hostname}:${process.env.PORT}`)
 });
 

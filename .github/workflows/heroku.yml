@@ -23,5 +23,5 @@ jobs:
           MONGODB_PASS: ${{ secrets.MONGODB_PASS }}
           MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
           EXPRESS_PORT: ${{ secrets.EXPRESS_PORT }}
-          MONGODB_URI_LOCAL: ${{ secrets.MONGODB_URI_LOCAL }}
+          MONGODB_URI_ATLAS: ${{ secrets.MONGODB_URI_ATLAS }}
           REDIS_CLOUD_URL: ${{ secrets.REDIS_CLOUD_URL }}

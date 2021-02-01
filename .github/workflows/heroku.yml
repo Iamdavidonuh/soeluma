@@ -16,13 +16,6 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          procfile: "web: yarn start"
+          procfile: "web: node server.js"
         env:
           NODE_ENV: production
-          REDIS_PORT: ${{ secrets.REDIS_PORT }}
-          MONGODB_USER: ${{ secrets.MONGODB_USER }}
-          MONGODB_PASS: ${{ secrets.MONGODB_PASS }}
-          MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
-          EXPRESS_PORT: ${{ secrets.EXPRESS_PORT }}
-          MONGODB_URI_ATLAS: ${{ secrets.MONGODB_URI_ATLAS }}
-          REDIS_CLOUD_URL: ${{ secrets.REDIS_CLOUD_URL }}

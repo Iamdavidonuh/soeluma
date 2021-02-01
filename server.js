@@ -5,10 +5,13 @@ const app = require('./app/app.js');
 
 //connect database
 if(useDocker===true){
+    console.log("connecting docker");
     connectDBDocker();
 }else if(useAtlasDB===true){
+    console.log("connecting atlas db");
     connectDBAtlas();
 }else{
+    console.log("connecting to local");
     connectDBLocal();
 }
 

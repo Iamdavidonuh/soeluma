@@ -16,12 +16,14 @@ router.post(
         check('movie_title', "Movie Name is Required").not().isEmpty()
     ],
     async (req, res) => {
+        console.log('hitting get movie view');
         const errors = validationResult(req);
         if (!errors.isEmpty()){
             return res.status(400).json({ errors: errors.array()});
         }
 
         const { movie_title } = req.body;
+        console.log('request.body returned: ', movie_title);
         const movie_title_lower = movie_title.toLowerCase();
 
         try{

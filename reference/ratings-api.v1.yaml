@@ -1,0 +1,963 @@
+openapi: 3.0.0
+info:
+  title: ratings-api
+  version: '1.0'
+  contact:
+    name: David onuh
+  license:
+    name: MIT
+    url: 'https://github.com/iamdavidonuh/soeluma/blob/main/LICENSE'
+  description: 'Searches and returns details of a movie title, emphasis on the ratings'
+servers:
+  - url: 'https://soeluma-api.herokuapp.com'
+    description: Soeluma Heroku
+paths:
+  /api/get-movie:
+    post:
+      summary: Get Movie data
+      tags:
+        - movie-ratings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    minLength: 1
+                  title:
+                    type: string
+                    minLength: 1
+                  studio:
+                    type: string
+                    minLength: 1
+                  avgRating:
+                    type: object
+                    properties:
+                      $numberDecimal:
+                        type: string
+                        minLength: 1
+                    required:
+                      - $numberDecimal
+                  consensus:
+                    type: string
+                    minLength: 1
+                  movie_id:
+                    type: string
+                    minLength: 1
+                  synopsis:
+                    type: string
+                    minLength: 1
+                  theaterReleaseDate:
+                    type: string
+                    minLength: 1
+                  meta_data:
+                    type: object
+                    properties:
+                      studio:
+                        type: string
+                        minLength: 1
+                      isInTheaters:
+                        type: boolean
+                      adjustedScore:
+                        type: number
+                      ratingSummary:
+                        type: object
+                        properties:
+                          topCritics:
+                            type: object
+                            properties:
+                              averageRating:
+                                type: number
+                              meterValue:
+                                type: number
+                              numReviews:
+                                type: number
+                              meterClass:
+                                type: string
+                                minLength: 1
+                              numRotten:
+                                type: number
+                              hasScore:
+                                type: boolean
+                              hasReviews:
+                                type: boolean
+                              numFresh:
+                                type: number
+                            required:
+                              - averageRating
+                              - meterValue
+                              - numReviews
+                              - meterClass
+                              - numRotten
+                              - hasScore
+                              - hasReviews
+                              - numFresh
+                          audience:
+                            type: object
+                            properties:
+                              numTotal:
+                                type: number
+                              averageScore:
+                                type: number
+                              ratingType:
+                                type: string
+                                minLength: 1
+                              meterScore:
+                                type: number
+                            required:
+                              - numTotal
+                              - averageScore
+                              - ratingType
+                              - meterScore
+                          allcount:
+                            type: number
+                          freshcount:
+                            type: number
+                          dvdcount:
+                            type: number
+                          consensus:
+                            type: string
+                            minLength: 1
+                          allCritics:
+                            type: object
+                            properties:
+                              averageRating:
+                                type: number
+                              meterValue:
+                                type: number
+                              numReviews:
+                                type: number
+                              meterClass:
+                                type: string
+                                minLength: 1
+                              numRotten:
+                                type: number
+                              hasScore:
+                                type: boolean
+                              hasReviews:
+                                type: boolean
+                              numFresh:
+                                type: number
+                            required:
+                              - averageRating
+                              - meterValue
+                              - numReviews
+                              - meterClass
+                              - numRotten
+                              - hasScore
+                              - hasReviews
+                              - numFresh
+                          rottencount:
+                            type: number
+                          topcount:
+                            type: number
+                        required:
+                          - topCritics
+                          - audience
+                          - allcount
+                          - freshcount
+                          - dvdcount
+                          - consensus
+                          - allCritics
+                          - rottencount
+                          - topcount
+                      isPlaying:
+                        type: boolean
+                      id:
+                        type: number
+                      title:
+                        type: string
+                        minLength: 1
+                      vanity:
+                        type: string
+                        minLength: 1
+                      officialUrl:
+                        type: string
+                        minLength: 1
+                      advisory:
+                        type: string
+                        minLength: 1
+                      synopsis:
+                        type: string
+                        minLength: 1
+                      casts:
+                        type: object
+                        properties:
+                          creators:
+                            type: array
+                            items:
+                              required: []
+                              properties: {}
+                          castItems:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required: []
+                              properties:
+                                person:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      minLength: 1
+                                    thumbnailImg:
+                                      type: string
+                                      minLength: 1
+                                    url:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - name
+                                    - thumbnailImg
+                                    - url
+                                characters:
+                                  type: array
+                                  uniqueItems: true
+                                  minItems: 1
+                                  items:
+                                    required:
+                                      - name
+                                    properties:
+                                      name:
+                                        type: string
+                                        minLength: 1
+                          screenwriters:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - name
+                                - thumbnailImg
+                                - url
+                              properties:
+                                name:
+                                  type: string
+                                  minLength: 1
+                                thumbnailImg:
+                                  type: string
+                                  minLength: 1
+                                url:
+                                  type: string
+                                  minLength: 1
+                          directors:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - name
+                                - thumbnailImg
+                                - url
+                              properties:
+                                name:
+                                  type: string
+                                  minLength: 1
+                                thumbnailImg:
+                                  type: string
+                                  minLength: 1
+                                url:
+                                  type: string
+                                  minLength: 1
+                          producers:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - name
+                                - thumbnailImg
+                                - url
+                              properties:
+                                name:
+                                  type: string
+                                  minLength: 1
+                                thumbnailImg:
+                                  type: string
+                                  minLength: 1
+                                url:
+                                  type: string
+                                  minLength: 1
+                        required:
+                          - creators
+                          - castItems
+                          - screenwriters
+                          - directors
+                          - producers
+                      mainTrailer:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          thumbUrl:
+                            type: string
+                            minLength: 1
+                          mp4Url:
+                            type: string
+                            minLength: 1
+                          hlsUrl:
+                            type: string
+                            minLength: 1
+                        required:
+                          - id
+                          - thumbUrl
+                          - mp4Url
+                          - hlsUrl
+                      isOnDVD:
+                        type: boolean
+                      year:
+                        type: number
+                      trackingType:
+                        type: string
+                        minLength: 1
+                      genreSet:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - id
+                            - displayName
+                          properties:
+                            id:
+                              type: number
+                            displayName:
+                              type: string
+                              minLength: 1
+                      isUpcoming:
+                        type: boolean
+                      reviews:
+                        type: object
+                        properties:
+                          total:
+                            type: number
+                          reviews:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - id
+                                - creationDate
+                                - isRotten
+                                - original_score
+                                - quote
+                                - freshness
+                                - isTop
+                                - url
+                                - isFresh
+                              properties:
+                                id:
+                                  type: number
+                                creationDate:
+                                  type: number
+                                isRotten:
+                                  type: boolean
+                                original_score:
+                                  type: string
+                                  minLength: 1
+                                quote:
+                                  type: string
+                                  minLength: 1
+                                links:
+                                  type: object
+                                  properties:
+                                    review:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - review
+                                freshness:
+                                  type: string
+                                  minLength: 1
+                                isTop:
+                                  type: boolean
+                                url:
+                                  type: string
+                                  minLength: 1
+                                isFresh:
+                                  type: boolean
+                                critic:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                    name:
+                                      type: string
+                                      minLength: 1
+                                    thumbnailImage:
+                                      type: string
+                                      minLength: 1
+                                    url:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - id
+                                    - name
+                                    - thumbnailImage
+                                    - url
+                                publication:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      minLength: 1
+                                    url:
+                                      type: string
+                                  required:
+                                    - name
+                                    - url
+                          links:
+                            type: object
+                            properties:
+                              alternate:
+                                type: string
+                                minLength: 1
+                              next:
+                                type: string
+                                minLength: 1
+                              self:
+                                type: string
+                                minLength: 1
+                              prev:
+                                type: string
+                                minLength: 1
+                            required:
+                              - alternate
+                              - next
+                              - self
+                              - prev
+                        required:
+                          - total
+                          - reviews
+                          - links
+                      status:
+                        type: string
+                        minLength: 1
+                      mpaaRating:
+                        type: string
+                        minLength: 1
+                      purchaseOptions:
+                        type: object
+                        properties:
+                          iTunes:
+                            type: object
+                            properties:
+                              price:
+                                type: string
+                                minLength: 1
+                              url:
+                                type: string
+                                minLength: 1
+                            required:
+                              - price
+                              - url
+                          vudu:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                minLength: 1
+                              url:
+                                type: string
+                                minLength: 1
+                            required:
+                              - type
+                              - url
+                          flixster:
+                            type: object
+                            properties:
+                              movieId:
+                                type: string
+                                minLength: 1
+                              type:
+                                type: string
+                                minLength: 1
+                              url:
+                                type: string
+                                minLength: 1
+                            required:
+                              - movieId
+                              - type
+                              - url
+                          netflix:
+                            type: object
+                            properties:
+                              streamingId:
+                                type: string
+                                minLength: 1
+                            required:
+                              - streamingId
+                          amazon:
+                            type: object
+                            properties:
+                              isPrime:
+                                type: boolean
+                              type:
+                                type: string
+                                minLength: 1
+                              url:
+                                type: string
+                                minLength: 1
+                            required:
+                              - isPrime
+                              - type
+                              - url
+                        required:
+                          - iTunes
+                          - vudu
+                          - flixster
+                          - netflix
+                          - amazon
+                      links:
+                        type: object
+                        properties:
+                          alternate:
+                            type: string
+                            minLength: 1
+                        required:
+                          - alternate
+                      boxoffice:
+                        type: string
+                        minLength: 1
+                      videoClips:
+                        type: object
+                        properties:
+                          mainTrailer:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              title:
+                                type: string
+                                minLength: 1
+                              minutes:
+                                type: number
+                              seconds:
+                                type: number
+                              thumbUrl:
+                                type: string
+                                minLength: 1
+                              mp4Url:
+                                type: string
+                                minLength: 1
+                              hlsUrl:
+                                type: string
+                                minLength: 1
+                            required:
+                              - id
+                              - title
+                              - minutes
+                              - seconds
+                              - thumbUrl
+                              - mp4Url
+                              - hlsUrl
+                          videoClips:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - id
+                                - title
+                                - minutes
+                                - seconds
+                                - thumbUrl
+                                - mp4Url
+                                - hlsUrl
+                              properties:
+                                id:
+                                  type: number
+                                title:
+                                  type: string
+                                  minLength: 1
+                                minutes:
+                                  type: number
+                                seconds:
+                                  type: number
+                                thumbUrl:
+                                  type: string
+                                  minLength: 1
+                                mp4Url:
+                                  type: string
+                                  minLength: 1
+                                hlsUrl:
+                                  type: string
+                                  minLength: 1
+                          size:
+                            type: number
+                        required:
+                          - mainTrailer
+                          - videoClips
+                          - size
+                      runningTime:
+                        type: number
+                      runningTimeStr:
+                        type: string
+                        minLength: 1
+                      url:
+                        type: string
+                        minLength: 1
+                      photos:
+                        type: object
+                        properties:
+                          photos:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - id
+                                - photoType
+                                - index
+                                - imageId
+                                - thumbnail
+                                - height
+                                - width
+                                - submittedDate
+                                - submittedBy
+                                - url
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                photoType:
+                                  type: string
+                                  minLength: 1
+                                index:
+                                  type: number
+                                imageId:
+                                  type: number
+                                thumbnail:
+                                  type: string
+                                  minLength: 1
+                                height:
+                                  type: number
+                                width:
+                                  type: number
+                                submittedDate:
+                                  type: string
+                                  minLength: 1
+                                submittedBy:
+                                  type: string
+                                  minLength: 1
+                                url:
+                                  type: string
+                                  minLength: 1
+                          length:
+                            type: number
+                        required:
+                          - photos
+                          - length
+                      isOnOpening:
+                        type: boolean
+                      isLimited:
+                        type: boolean
+                      posters:
+                        type: object
+                        properties:
+                          thumbnail:
+                            type: string
+                            minLength: 1
+                          detailed:
+                            type: string
+                            minLength: 1
+                          original:
+                            type: string
+                            minLength: 1
+                          profile:
+                            type: string
+                            minLength: 1
+                        required:
+                          - thumbnail
+                          - detailed
+                          - original
+                          - profile
+                      ratings:
+                        type: object
+                        properties:
+                          theaterReleaseDate:
+                            type: number
+                          critics_score:
+                            type: number
+                          critics_rating:
+                            type: string
+                            minLength: 1
+                          dvdReleaseDate:
+                            type: number
+                          audience_score:
+                            type: number
+                          audience_rating:
+                            type: string
+                            minLength: 1
+                        required:
+                          - theaterReleaseDate
+                          - critics_score
+                          - critics_rating
+                          - dvdReleaseDate
+                          - audience_score
+                          - audience_rating
+                    required:
+                      - studio
+                      - isInTheaters
+                      - adjustedScore
+                      - ratingSummary
+                      - isPlaying
+                      - id
+                      - title
+                      - vanity
+                      - officialUrl
+                      - advisory
+                      - synopsis
+                      - casts
+                      - mainTrailer
+                      - isOnDVD
+                      - year
+                      - trackingType
+                      - genreSet
+                      - isUpcoming
+                      - reviews
+                      - status
+                      - mpaaRating
+                      - purchaseOptions
+                      - links
+                      - boxoffice
+                      - videoClips
+                      - runningTime
+                      - runningTimeStr
+                      - url
+                      - photos
+                      - isOnOpening
+                      - isLimited
+                      - posters
+                      - ratings
+                  data_created:
+                    type: string
+                    minLength: 1
+                  __v:
+                    type: number
+                required:
+                  - _id
+                  - title
+                  - studio
+                  - avgRating
+                  - consensus
+                  - movie_id
+                  - synopsis
+                  - theaterReleaseDate
+                  - meta_data
+                  - data_created
+                  - __v
+              examples:
+                example-1:
+                  value:
+                    _id: string
+                    title: string
+                    studio: string
+                    avgRating:
+                      $numberDecimal: string
+                    consensus: string
+                    movie_id: string
+                    synopsis: string
+                    theaterReleaseDate: string
+                    meta_data:
+                      studio: string
+                      isInTheaters: true
+                      adjustedScore: 0
+                      ratingSummary:
+                        topCritics:
+                          averageRating: 0
+                          meterValue: 0
+                          numReviews: 0
+                          meterClass: string
+                          numRotten: 0
+                          hasScore: true
+                          hasReviews: true
+                          numFresh: 0
+                        audience:
+                          numTotal: 0
+                          averageScore: 0
+                          ratingType: string
+                          meterScore: 0
+                        allcount: 0
+                        freshcount: 0
+                        dvdcount: 0
+                        consensus: string
+                        allCritics:
+                          averageRating: 0
+                          meterValue: 0
+                          numReviews: 0
+                          meterClass: string
+                          numRotten: 0
+                          hasScore: true
+                          hasReviews: true
+                          numFresh: 0
+                        rottencount: 0
+                        topcount: 0
+                      isPlaying: true
+                      id: 0
+                      title: string
+                      vanity: string
+                      officialUrl: string
+                      advisory: string
+                      synopsis: string
+                      casts:
+                        creators:
+                          - {}
+                        castItems:
+                          - person:
+                              name: string
+                              thumbnailImg: string
+                              url: string
+                            characters:
+                              - name: string
+                        screenwriters:
+                          - name: string
+                            thumbnailImg: string
+                            url: string
+                        directors:
+                          - name: string
+                            thumbnailImg: string
+                            url: string
+                        producers:
+                          - name: string
+                            thumbnailImg: string
+                            url: string
+                      mainTrailer:
+                        id: 0
+                        thumbUrl: string
+                        mp4Url: string
+                        hlsUrl: string
+                      isOnDVD: true
+                      year: 0
+                      trackingType: string
+                      genreSet:
+                        - id: 0
+                          displayName: string
+                      isUpcoming: true
+                      reviews:
+                        total: 0
+                        reviews:
+                          - id: 0
+                            creationDate: 0
+                            isRotten: true
+                            original_score: string
+                            quote: string
+                            links:
+                              review: string
+                            freshness: string
+                            isTop: true
+                            url: string
+                            isFresh: true
+                            critic:
+                              id: 0
+                              name: string
+                              thumbnailImage: string
+                              url: string
+                            publication:
+                              name: string
+                              url: string
+                        links:
+                          alternate: string
+                          next: string
+                          self: string
+                          prev: string
+                      status: string
+                      mpaaRating: string
+                      purchaseOptions:
+                        iTunes:
+                          price: string
+                          url: string
+                        vudu:
+                          type: string
+                          url: string
+                        flixster:
+                          movieId: string
+                          type: string
+                          url: string
+                        netflix:
+                          streamingId: string
+                        amazon:
+                          isPrime: true
+                          type: string
+                          url: string
+                      links:
+                        alternate: string
+                      boxoffice: string
+                      videoClips:
+                        mainTrailer:
+                          id: 0
+                          title: string
+                          minutes: 0
+                          seconds: 0
+                          thumbUrl: string
+                          mp4Url: string
+                          hlsUrl: string
+                        videoClips:
+                          - id: 0
+                            title: string
+                            minutes: 0
+                            seconds: 0
+                            thumbUrl: string
+                            mp4Url: string
+                            hlsUrl: string
+                        size: 0
+                      runningTime: 0
+                      runningTimeStr: string
+                      url: string
+                      photos:
+                        photos:
+                          - id: string
+                            photoType: string
+                            index: 0
+                            imageId: 0
+                            thumbnail: string
+                            height: 0
+                            width: 0
+                            submittedDate: string
+                            submittedBy: string
+                            url: string
+                        length: 0
+                      isOnOpening: true
+                      isLimited: true
+                      posters:
+                        thumbnail: string
+                        detailed: string
+                        original: string
+                        profile: string
+                      ratings:
+                        theaterReleaseDate: 0
+                        critics_score: 0
+                        critics_rating: string
+                        dvdReleaseDate: 0
+                        audience_score: 0
+                        audience_rating: string
+                    data_created: string
+                    __v: 0
+      operationId: post-api-get-movie
+      description: 'Returns movie data from search term '
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                movie_title:
+                  type: string
+              required:
+                - movie_title
+            examples:
+              example-1:
+                value:
+                  movie_title: Captain America
+        description: ''
+components:
+  schemas: {}

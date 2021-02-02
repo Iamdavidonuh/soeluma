@@ -10,6 +10,7 @@ function buildMovieDetailsUrl(query){
 async function getMovieData(query){
     const cleanedUrl = buildMovieDetailsUrl(normalizeQueryParam(query));
     let response = await axios.get(cleanedUrl);
+    console.log("response from axios: ", response);
     return response.data;
 }
 

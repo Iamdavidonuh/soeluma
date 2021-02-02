@@ -16,22 +16,27 @@ router.post(
         check('movie_title', "Movie Name is Required").not().isEmpty()
     ],
     async (req, res) => {
+        console.log('hitting get movie view');
         const errors = validationResult(req);
         if (!errors.isEmpty()){
             return res.status(400).json({ errors: errors.array()});
         }
 
         const { movie_title } = req.body;
+        console.log('request.body returned: ', movie_title);
         const movie_title_lower = movie_title.toLowerCase();
 
         try{
             // check item in cache
+            console.log('\n\n checking cache \n\n');
             const cache_hit = await getCacheDataOrNull(movie_title_lower);
+            console.log("\n\n cache hit", cache_hit);
             if (cache_hit != null){
                 res.json(JSON.parse(cache_hit));
             }
             else{
-                let  movie = await Movie.findOne({ title : movie_title_lower })
+                console.log("finding movie......");
+                let  movie = await Movie.findOne({ title : movie_title_lower });
                 if (!movie){
                     let data = await getMovieData(movie_title_lower);
                     const response = parseMovieDataRT(data);
@@ -50,7 +55,7 @@ router.post(
             
         }catch(error){
             console.log(error.message);
-            res.status(500).send("Server Error");
+            res.status(500).send(error.message);
         }
     }
     );

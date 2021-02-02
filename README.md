@@ -4,6 +4,7 @@
 [![Actions Status](https://github.com/Iamdavidonuh/soeluma/workflows/Soeluma%20Test/badge.svg)](https://github.com/Iamdavidonuh/soeluma/actions)
 [![Actions Status](https://github.com/Iamdavidonuh/soeluma/workflows/Deploy%20to%20Heroku/badge.svg)](https://github.com/Iamdavidonuh/soeluma/actions)
 
+
 Estonian for parse, is a node js application for parsing and returning movie ratings data
 
 ## Requirements
@@ -61,3 +62,11 @@ The page will reload if you make edits.<br />
 ### `yarn run test`
 
 Runs Tests using [Jest](https://jestjs.io/)
+
+## Deployment
+
+The deployed API version from `soeluma api` is available. Please read the [API documentation](https://bigbaby.stoplight.io/docs/soeluma/reference/ratings-api.v1.yaml) for usage
+
+## License
+
+This project is opened under the [GNU AGPLv3](./LICENSE) which allows very broad use for both academic and commercial purposes

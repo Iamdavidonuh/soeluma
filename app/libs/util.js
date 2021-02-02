@@ -21,6 +21,7 @@ function dateConverter(timestamp){
 }
 
 function getCacheDataOrNull(searchTerm){
+    console.log("\n\n.... redis get item: ", redis_get)
     return redis_get(searchTerm)
 }
 

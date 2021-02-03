@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
-const { mongoDBLocalUri, mongoDBDockerUri, mongoDBAtlasUri, MONGODB_USER, MONGODB_PASS } = require('../config/config.js');
+const { 
+    mongoDBAtlasUri, mongoDBLocalUri,
+    MONGODB_USER, MONGODB_PASS, MONGO_DBNAME,
+    mongodb_servicename
+} = require('../config/config.js');
+
 
 
 const connectDBLocal = async() => {
@@ -23,6 +28,7 @@ const connectDBLocal = async() => {
 
 
 const connectDBDocker = async() => {
+    const mongoDBDockerUri = `mongodb://${admin}:${password}@${mongodb_servicename}/${MONGO_DBNAME}`; 
     try{
         await mongoose.connect(mongoDBDockerUri, {
             useUnifiedTopology: true,

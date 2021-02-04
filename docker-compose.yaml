@@ -11,15 +11,15 @@ services:
     volumes:
       - mongo-data:/data/db
   
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+  #     - ME_CONFIG_MONGODB_SERVER=mongodb
 
   redis:
     image: redis
@@ -27,7 +27,7 @@ services:
 
 
   soeluma:
-    image: soeluma:latest
+    image: ghcr.io/iamdavidonuh/soeluma:latest
     restart: on-failure
     depends_on:
       - redis

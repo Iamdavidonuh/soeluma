@@ -1,15 +1,8 @@
-const redis = require('redis');
+const { connectRedis } = require('../libs/redis');
 const { promisify } = require("util");
 
-if (process.env.REDIS_CLOUD_URL){
+const client = connectRedis();
 
-    var rtg = require('url').parse(process.env.REDIS_CLOUD_URL);
-    var client = redis.createClient(rtg.port, rtg.hostname);
-    client.auth(rtg.auth.split(":")[1]);
-
-}else{
-    var client = redis.createClient(process.env.REDIS_PORT);
-}
 //promisify redis get method
 const redis_get = promisify(client.get).bind(client);
 
@@ -24,7 +17,7 @@ module.exports =  {
     MONGODB_USER: process.env.MONGODB_USER,
     MONGODB_PASS: process.env.MONGODB_PASS,
     MONGO_DBNAME: process.env.MONGO_DBNAME,
-    mongodb_servicename: process.env.MONGODB_SERVICENAME,
+    mongodbDockerName: process.env.MONGODB_DOCKER_NAME,
     REDIS_PORT: process.env.REDIS_PORT,
     redisClient: client,
     redis_get: redis_get

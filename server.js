@@ -5,10 +5,10 @@ const app = require('./app/app.js');
 //console.log('check useatlasdb',typeof useAtlasDB);
 
 //connect database
-if(useDocker==='true'){
+if(useDocker=='true'){
     console.log("connecting docker");
     connectDBDocker();
-}else if(useAtlasDB==='true'){
+}else if(useAtlasDB=='true'){
     console.log("connecting atlas db");
     connectDBAtlas();
 }else{

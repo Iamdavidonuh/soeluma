@@ -21,9 +21,17 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
+  redis:
+    image: redis
+    restart: on-failure
+
+
   soeluma:
-    image: soeluma:1.0
-    restart: always
+    image: soeluma:latest
+    restart: on-failure
+    depends_on:
+      - redis
+      - mongodb
     ports:
       - 3000:3000
 

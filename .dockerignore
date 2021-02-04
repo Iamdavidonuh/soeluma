@@ -1,0 +1,6 @@
+node_modules
+.env.development
+.env.production
+example.env
+jest-*
+jest.*

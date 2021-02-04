@@ -18,8 +18,6 @@ RUN mkdir -p /home/sandbox
 
 WORKDIR /home/sandbox
 
-#install yarn globally
-RUN npm install --global yarn
 
 RUN yarn install --frozen-lockfile
 
